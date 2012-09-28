@@ -149,3 +149,9 @@ LOGGING = {
         },
     }
 }
+
+#Additional settings can be added/overwritten in local_settings.py (not version controlled)
+try:
+    from local_settings import *
+except ImportError:
+    pass
