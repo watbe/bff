@@ -39,5 +39,5 @@ class VoteEvent(models.Model):
     class Meta:
         unique_together = ('room_number', 'meal')
 
-    room_number = models.IntegerField()
+    room_number = models.CharField(max_length=4)
     meal = models.ForeignKey(Meal)
