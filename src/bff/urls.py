@@ -10,7 +10,7 @@ admin.autodiscover()
 class BasicAdmin(AdminSite):
     pass
 
-basic_admin = BasicAdmin()
+basic_admin = BasicAdmin('basic')
 register_basic_admin(basic_admin)
 
 urlpatterns = patterns('',
