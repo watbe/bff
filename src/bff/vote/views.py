@@ -9,11 +9,15 @@ import re
 
 def login(request):
 	if request.method == 'POST':
-	 	form = LoginForm(request.POST)
+		form = LoginForm(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('/vote/')
+			return HttpResponse("Your room number is %s" % form.cleaned_data['room_number'])
 	else:
 		form = LoginForm()
 	return render(request, 'login.html', {
 		'form': form,
 	})	
+
+def vote(request):
+		return HttpResponseRedirect('/')
+
