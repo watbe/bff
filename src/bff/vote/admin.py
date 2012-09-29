@@ -28,4 +28,4 @@ def register_basic_admin(site):
     uses autodiscover, this allows only the required models
     to be added.
     """
-    site.register(Menu)
+    site.register(Menu, MenuAdmin)
