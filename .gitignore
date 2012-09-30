@@ -1,4 +1,4 @@
 bff_env
 migrations
 *.pyc
-*.swap
+*.swp
