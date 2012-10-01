@@ -35,7 +35,7 @@ VOTE_CHOICES = (
 
 class Vote(models.Model):
     meal = models.ForeignKey(Meal)
-    rating = models.SmallIntegerField(choices=VOTE_CHOICES)
+    rating = models.SmallIntegerField(choices=VOTE_CHOICES, null=True)
 
 class VoteEvent(models.Model):
     class Meta:
@@ -43,3 +43,4 @@ class VoteEvent(models.Model):
 
     room_number = models.CharField(max_length=4)
     menu = models.ForeignKey(Menu)
+

@@ -22,3 +22,12 @@ admin.site.register(Vote)
 admin.site.register(Category)
 admin.site.register(VoteEvent)
 
+def register_basic_admin(site):
+    """
+    Registers any appropriate admin models
+    to the basic admin site. While the fully-featured admin
+    uses autodiscover, this allows only the required models
+    to be added.
+    """
+    site.register(Menu, MenuAdmin)
+    site.register(Category)

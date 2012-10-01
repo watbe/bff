@@ -1,0 +1,9 @@
+<form method="post" action="">
+		{{ formset.management_form }}
+		{% for form in formset %}
+			<b>{{ form.meal.name }}</b>
+			{{ form.as_p }}
+		{% endfor %}
+		{% csrf_token %}
+		<input type="submit" value="Submit"/>
+</form>
