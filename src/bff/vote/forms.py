@@ -35,7 +35,7 @@ class LoginForm(forms.Form):
 
 
 
-FULL_CHOICES = (('', '-----'),) + VOTE_CHOICES
+FULL_CHOICES = (('', 'No rating'),) + VOTE_CHOICES
 
 class RatingForm(forms.ModelForm):
 	"""
@@ -48,7 +48,7 @@ class RatingForm(forms.ModelForm):
 
 	#Need to overwrite the default field to make it not required
 
-	rating = forms.ChoiceField(choices=FULL_CHOICES, required=False)
+	rating = forms.ChoiceField(choices=FULL_CHOICES, required=False, widget=forms.RadioSelect)
 
 	class Meta:
 		model = Vote
