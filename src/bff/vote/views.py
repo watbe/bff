@@ -12,7 +12,8 @@ def login(request):
 		if request.method == 'POST':
 			form = LoginForm(request.POST)
 			if form.is_valid():
-				return HttpResponseRedirect(reverse('vote', kwargs={'room':form.cleaned_data['room_number']}))
+				request.session['room'] = form.cleaned_data['room_number']
+				return HttpResponseRedirect(reverse('vote'))
 				#return HttpResponse("Your room number is %s" % form.cleaned_data['room_number'])
 		else:
 			form = LoginForm()
@@ -23,8 +24,13 @@ def login(request):
 		return HttpResponse("Sorry, the menu has not been added today!")
 
 
-def vote(request, room):
+def vote(request):
 	menu = Menu.objects.get(date=datetime.date.today())
+	if not 'room' in request.session:
+		#Double check there is a room number
+		return HttpResponseRedirect('/')
+
+	room = request.session['room']
 	if request.method == 'POST':
 		formset = RatingFormSet(request.POST)
 
@@ -37,6 +43,7 @@ def vote(request, room):
 				form.save()
 			#Create VoteEvent to log the vote
 			VoteEvent.objects.create(room_number = room, menu=menu)
+			del request.session['room']
 			return HttpResponse("Saved your ratings")
 	else:
 		initial_data = []
