@@ -50,6 +50,7 @@ table {
 /* The real stuff */
 
 body {
+	background-color:#efefef;
 	font-family: serif;
 	font-size:62.5%;
 	color:#333;
@@ -67,22 +68,25 @@ h1 {
 	font-size: 4em;
 }
 
+form {
+}
+
 form h2 {
 	width:100%;
 	padding:0.4em;
 }
 
-form h2:nth-child(even) {
+form .meal-vote:nth-child(even) h2 {
+	background-color:#ee9800;
+}
+
+form .meal-vote:nth-child(odd) h2 {
 	background-color:#931810;
 	color:#efefef;
 }
 
-form h2:nth-child(odd) {
-	background-color:#ee9800;
-}
-
 form input.submit {
-    font-size: 3em;
+    font-size: 3.5em;
     left: 50%;
     margin-left: -150px;
     position: relative;
@@ -91,5 +95,42 @@ form input.submit {
     color:#efefef;
 	border:none;
 	padding:0.3em;
+	margin-top: 1em;
 	cursor:pointer;
+}
+
+.clearfix {
+	clear:both;
+}
+
+.meal-vote {
+	background-image:none;
+	background-color:transparent;
+	background-position: 0 0;
+	background-repeat: repeat;
+	clear:both;
+}
+
+.meal-vote:nth-child(even) {
+	background-image:url("/static/yellow_bg.png");
+}
+
+.meal-vote:nth-child(odd) {
+	background-image:url("/static/red_bg.png");
+	color:#efefef;
+}	
+
+.meal-vote ul li:first-child {
+	display:none;
+}
+
+.meal-vote p {
+	display:none;
+}
+
+.meal-vote ul li {
+	float:left;
+	margin-left:22%;
+	display:block;
+	padding: 1em 0;
 }
