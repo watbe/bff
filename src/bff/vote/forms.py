@@ -15,7 +15,7 @@ def valid_room(room_str):
 	"""
 	Takes a room number as a string, returns true if the room number is valid.
 	"""
-	valid_rooms = range(101,140) + range(201,240) + range (301,340) + range (151,190) + range (251,290) + range (351,390)
+	valid_rooms = range(101,141) + range(201,241) + range (301,341) + range (151,191) + range (251,291) + range (351,391)
 
 	return int(room_str) in valid_rooms
 
