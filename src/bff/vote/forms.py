@@ -1,7 +1,10 @@
 import datetime
 from django import forms
 from django.forms.formsets import formset_factory, BaseFormSet
-from django.forms.widgets import HiddenInput
+from django.forms.widgets import HiddenInput, RadioFieldRenderer, RadioInput, RadioSelect
+from django.utils.encoding import force_unicode
+from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
 from bff.vote.models import VoteEvent, Vote, VOTE_CHOICES
 
 def already_voted(room_str):
@@ -37,6 +40,35 @@ class LoginForm(forms.Form):
 
 FULL_CHOICES = (('', 'No rating'),) + VOTE_CHOICES
 
+class BffRadioInput(RadioInput):
+	def render(self, name=None, value=None, attrs=None, choices=()):
+		name = name or self.name
+		value = value or self.value
+		attrs = attrs or self.attrs
+		if 'id' in self.attrs:
+			label_for = ' for="%s_%s"' % (self.attrs['id'], self.index)
+		else:
+			label_for = ''
+		choice_label = conditional_escape(force_unicode(self.choice_label))
+		return mark_safe(u'%s<label%s> %s</label>' % (self.tag(), label_for, choice_label))
+
+
+class BffRadioFieldRenderer(RadioFieldRenderer):
+	def __iter__(self):
+		for i, choice in enumerate(self.choices):
+			yield BffRadioInput(self.name, self.value, self.attrs.copy(), choice, i)
+
+	def __getitem__(self, idx):
+		choice = self.choices[idx] # Let the IndexError propogate
+		return BffRadioInput(self.name, self.value, self.attrs.copy(), choice, idx)
+
+class BffRadioSelect(RadioSelect):
+	def __init__(self, *args, **kwargs):
+		if not 'renderer' in kwargs:
+			kwargs['renderer'] = BffRadioFieldRenderer
+		super(BffRadioSelect, self).__init__(*args, **kwargs)
+
+
 class RatingForm(forms.ModelForm):
 	"""
 	A form representing a rating for a single meal.
@@ -48,7 +80,7 @@ class RatingForm(forms.ModelForm):
 
 	#Need to overwrite the default field to make it not required
 
-	rating = forms.ChoiceField(choices=FULL_CHOICES, required=False, widget=forms.RadioSelect)
+	rating = forms.ChoiceField(choices=FULL_CHOICES, required=False, widget=BffRadioSelect)
 
 	class Meta:
 		model = Vote
