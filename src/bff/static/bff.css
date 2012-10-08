@@ -120,8 +120,14 @@ form input.submit {
 	color:#efefef;
 }	
 
+.meal-vote ul {
+	position:relative;
+}
+
 .meal-vote ul li:first-child {
-	display:none;
+	clear:both;
+	width:100%;
+	/*display:none;*/
 }
 
 .meal-vote p {
@@ -129,8 +135,45 @@ form input.submit {
 }
 
 .meal-vote ul li {
-	float:left;
-	margin-left:22%;
-	display:block;
-	padding: 1em 0;
+    display: block;
+    float: left;
+    padding: 1em 0;
+    width: 33%;
+}
+
+
+.meal-vote label {
+    cursor: pointer;
+    display: block;
+    height: 100px;
+    left: 50%;
+    margin-left: -50px;
+    position: relative;
+    text-indent: -99999px;
+    width: 100px;
+}
+
+.meal-vote li:nth-child(1) label {
+    height: 10px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    text-indent: 0;
+    top: 70px;
+}
+
+.meal-vote li:nth-child(1) label:after {
+	content:" HI";
+}
+
+.meal-vote li:nth-child(2) label {
+    background-image: url("/static/down.png");
+}
+
+.meal-vote li:nth-child(3) label {
+    background-image: url("/static/even.png");
+}
+
+.meal-vote li:nth-child(4) label {
+    background-image: url("/static/up.png");
 }
