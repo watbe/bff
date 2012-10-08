@@ -1,4 +1,32 @@
-<form action="/" method="post">{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+	<div id="keypad">
+		<div class="number">1</div>
+		<div class="number">2</div>
+		<div class="number">3</div>
+		<div class="clearfix"></div>
+		<div class="number">4</div>
+		<div class="number">5</div>
+		<div class="number">6</div>
+		<div class="clearfix"></div>
+		<div class="number">7</div>
+		<div class="number">8</div>
+		<div class="number">9</div>
+		<div class="clearfix"></div>
+		<div class="number">0</div>
+		<div class="backspace">backspace</div>
+		<div class="clearfix"></div>
+	</div>
+	
+	<div id="room_number"></div>
+
+	<div id="form"><form id="login" action="/" method="post">{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" class="submit-login" value="login" />
+	</form></div>
+{% endblock %}
+
+{% block meta %}
+<meta name="viewport" content="width=300, initial-scale=1, maximum-scale=1, user-scalable=0">
+{% endblock %}

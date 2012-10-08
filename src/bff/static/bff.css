@@ -72,15 +72,20 @@ form {
 }
 
 form h2 {
+	cursor:pointer;
+	background-position: 20px 50%;
+	background-image:  url('/static/arrow.png');
+	background-repeat: no-repeat;
 	width:100%;
-	padding:0.4em;
+	padding:20px 20px 20px 70px;
+	height:40px;
 }
 
-form .meal-vote:nth-child(even) h2 {
+form h2:nth-child(4n+4) {
 	background-color:#ee9800;
 }
 
-form .meal-vote:nth-child(odd) h2 {
+form h2:nth-child(4n+2) {
 	background-color:#931810;
 	color:#efefef;
 }
@@ -100,22 +105,26 @@ form input.submit {
 }
 
 .clearfix {
-	clear:both;
+	clear:both !important;
 }
 
 .meal-vote {
 	background-image:none;
 	background-color:transparent;
 	background-position: 0 0;
+	height:180px;
 	background-repeat: repeat;
 	clear:both;
+	cursor:pointer;
+	display:none;
+	overflow:hidden;
 }
 
-.meal-vote:nth-child(even) {
+.meal-vote:nth-child(4n+1) {
 	background-image:url("/static/yellow_bg.png");
 }
 
-.meal-vote:nth-child(odd) {
+.meal-vote:nth-child(4n+3) {
 	background-image:url("/static/red_bg.png");
 	color:#efefef;
 }	
@@ -141,6 +150,9 @@ form input.submit {
     width: 33%;
 }
 
+.meal-vote input[type="radio"] {
+	display:none;
+}
 
 .meal-vote label {
     cursor: pointer;
@@ -165,7 +177,7 @@ form input.submit {
 	border:none;
 }
 
-.meal-vote li:nth-child(1) label.highlight {
+.meal-vote li:nth-child(1) input:checked + label {
 	background-image: url('/static/cancel.png') !important;
 	border:none;
 }
@@ -182,6 +194,69 @@ form input.submit {
     background-image: url("/static/up.png");
 }
 
-.meal-vote label.highlight {
+.meal-vote input:checked + label {
 	border: 10px solid #0e5f7e; 
+}
+
+h2.open {
+	background-image: url('/static/arrow-down.png');
+}
+
+#keypad, 
+#form {
+	margin:0 auto;
+	width:300px;
+}
+
+#keypad div.number,
+#keypad div.backspace {
+	background-color:#fff;
+	cursor:pointer;
+	font-size:2em;
+	font-weight:bold;
+	float:left;
+	margin:10px;
+	text-align:center;
+    	height: 80px;
+}
+
+#keypad div.number {
+    font-size: 4em;
+    line-height: 80px;
+    width: 80px;
+}
+
+#keypad div.backspace {
+	line-height:75px;
+	width: 180px;
+}
+
+form#login {
+	clear:both;
+}
+
+form#login p {
+	display:none;
+}
+
+div#room_number {
+	font-size:5em;
+	font-weight:bold;
+	height:100px;
+	width:300px;
+	margin:0 auto;
+	text-align:center;
+}
+
+form#login input.submit-login {
+	border:none;
+	color:#efefef;
+	background-color:#0E5F7E;
+	width:200px;
+	outline:0;
+	cursor:pointer;
+	height:70px;
+	font-size: 3em;
+	display:block;
+	margin:0 auto;
 }
