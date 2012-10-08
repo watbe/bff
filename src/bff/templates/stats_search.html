@@ -7,13 +7,25 @@
 
 	{% if results %}
 		<h2>Search results</h2>
-		<table>
+		<table class="stats-table">
 			<thead>
 			<tr><th>Meal name</th><th>Date</th><th>Satisfaction</th></tr>
 			</thead>
 			<tbody>
 			{% for meal in results %}
-				<tr><td>{{ meal.meal.name }}</td><td><a href="{% url stats meal.date.year meal.date.month meal.date.day %}">{{ meal.date }}</a></td><td>{{ meal.positive }}/{{ meal.neutral }}/{{ meal.negative }}</td></tr>
+				<tr class="stats-meal-row">
+					<td>{{ meal.meal.name }}</td>
+					<td><a href="{% url stats meal.date.year meal.date.month meal.date.day %}">{{ meal.date }}</a></td>
+					<td><div class="bar-chart">
+						{% if meal.total > 0 %}
+							<div class="bar positive-bar" style="width: {{ meal.pos_pc }}px;"><span class="bar-text-padding">{{ meal.positive }}</span></div>
+							<div class="bar neutral-bar" style="width: {{ meal.neu_pc }}px;"><span class="bar-text-padding">{{ meal.neutral }}</span></div>
+							<div class="bar negative-bar" style="width: {{ meal.neg_pc }}px;"><span class="bar-text-padding">{{ meal.negative }}</span></div>
+						{% else %}
+							No ratings
+						{% endif %}
+					</div></td>
+				</tr>
 			{% endfor %}
 			</tbody>
 

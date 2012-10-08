@@ -163,13 +163,23 @@ def stats_search(request):
 		results = []
 		for meal in meals:
 			count_queryset = meal.ratings.all()
+			positive = count_queryset.filter(rating=2).count()
+			neutral = count_queryset.filter(rating=1).count()
+			negative = count_queryset.filter(rating=0).count()
+			total = positive + neutral + negative
 			meal_dict = {
 				'meal':meal,
 				'date':meal.menu.date,
-				'positive':count_queryset.filter(rating = 2).count(),
-				'neutral':count_queryset.filter(rating = 1).count(),
-				'negative':count_queryset.filter(rating = 0).count(),
+				'positive': positive,
+				'neutral': neutral,
+				'negative': negative,
+				'total': total,
 			}
+			if total > 0:
+				meal_dict['pos_pc'] = positive * 300 / total
+				meal_dict['neu_pc'] = neutral * 300 / total
+				meal_dict['neg_pc'] = 300 - meal_dict['pos_pc'] - meal_dict['neu_pc']
+
 			results.append(meal_dict)
 		res_dict['results'] = results
 		res_dict['paginator'] = meals
