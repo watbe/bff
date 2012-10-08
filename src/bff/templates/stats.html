@@ -1,0 +1,10 @@
+
+
+{% for meal in meals %}
+	<h2>{{ meal.meal.name }}</h2>
+	<ul>
+			<li>Positive: {{ meal.positive }}</li>
+			<li>Neutral: {{ meal.neutral }}</li>
+			<li>Negative: {{ meal.negative }}</li>
+	</ul>
+{% endfor %}
