@@ -1,10 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart", 'columnchart']});
+		google.setOnLoadCallback(drawCharts);
+		function drawCharts() {
+			var data = google.visualization.arrayToDataTable([
+				['Rating', 'Votes'],
+				['Great',    		{{ totals.positive }}],
+				['Satisfactory',	{{ totals.neutral }}],
+				['Unsatisfactory',	{{ totals.negative }}]
+			]);
+
+			var options = {
+				title: 'Overall satisfaction'
+
+			};
+
+			var chart = new google.visualization.PieChart(document.getElementById('overall-pie-chart'));
+			chart.draw(data, options);
 
 
-{% for meal in meals %}
-	<h2>{{ meal.meal.name }}</h2>
-	<ul>
-			<li>Positive: {{ meal.positive }}</li>
-			<li>Neutral: {{ meal.neutral }}</li>
-			<li>Negative: {{ meal.negative }}</li>
-	</ul>
-{% endfor %}
+			var data_2 = google.visualization.arrayToDataTable([
+				['Year', 'Great', 'Satisfactory', 'Unsatisfactory'],
+				{% for meal in meals %}
+				['{{ meal.meal.name }}',  {{ meal.positive }}, {{ meal.neutral }}, {{ meal.negative }}],
+				{% endfor %}
+			]);
+
+			var options_2 = {
+				title: 'Satisfaction by meal',
+				hAxis: {title: 'Meal'}
+			};
+
+			var chart_2 = new google.visualization.ColumnChart(document.getElementById('meals-column-chart'));
+			chart_2.draw(data_2, options_2);
+		}
+
+
+	</script>
+	<header style="border-bottom: 1px solid; padding-bottom: 25px;">
+	<h1>Results for {{ date }}</h1>
+	{% if prev %}
+	<a href="{% url stats prev.year prev.month prev.day %}" style="float:left; font-size: 16px; margin-left: 10px;">« {{ prev }}</a>
+	{% endif %}
+	{% if next %}
+		<a href="{% url stats next.year next.month next.day %}" style="font-size: 16px; float: right; margin-right: 10px;">{{ next }} »</a>
+	{% endif %}
+	</header>
+	<div id="overall-pie-chart" style="width: 900px; height: 500px;"></div>
+	<div id="meals-column-chart" style="width: 900px; height: 500px;"></div>
+
+{#	{% for meal in meals %}#}
+{#		<h2>{{ meal.meal.name }}</h2>#}
+{#		<ul>#}
+{#			<li>Positive: {{ meal.positive }}</li>#}
+{#			<li>Neutral: {{ meal.neutral }}</li>#}
+{#			<li>Negative: {{ meal.negative }}</li>#}
+{#		</ul>#}
+{#	{% endfor %}#}
+
+{% endblock %}
