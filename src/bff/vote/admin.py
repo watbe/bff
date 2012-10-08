@@ -17,7 +17,7 @@ class MealAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Menu, MenuAdmin)
-admin.site.register(Meal, MealAdmin)
+#admin.site.register(Meal, MealAdmin)
 admin.site.register(Vote)
 admin.site.register(Category)
 admin.site.register(VoteEvent)

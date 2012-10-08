@@ -1,0 +1,136 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* The real stuff */
+
+body {
+	background-color:#efefef;
+	font-family: serif;
+	font-size:62.5%;
+	color:#333;
+}
+
+h1 {
+	font-size:5em;
+	letter-spacing: -0.04em;
+	text-align:center;
+	margin:1em 0;
+}
+
+.meal-heading {
+	text-transform:lowercase;
+	font-size: 4em;
+}
+
+form {
+}
+
+form h2 {
+	width:100%;
+	padding:0.4em;
+}
+
+form .meal-vote:nth-child(even) h2 {
+	background-color:#ee9800;
+}
+
+form .meal-vote:nth-child(odd) h2 {
+	background-color:#931810;
+	color:#efefef;
+}
+
+form input.submit {
+    font-size: 3.5em;
+    left: 50%;
+    margin-left: -150px;
+    position: relative;
+    width: 300px;
+    background-color: #0e5f7e;
+    color:#efefef;
+	border:none;
+	padding:0.3em;
+	margin-top: 1em;
+	cursor:pointer;
+}
+
+.clearfix {
+	clear:both;
+}
+
+.meal-vote {
+	background-image:none;
+	background-color:transparent;
+	background-position: 0 0;
+	background-repeat: repeat;
+	clear:both;
+}
+
+.meal-vote:nth-child(even) {
+	background-image:url("/static/yellow_bg.png");
+}
+
+.meal-vote:nth-child(odd) {
+	background-image:url("/static/red_bg.png");
+	color:#efefef;
+}	
+
+.meal-vote ul li:first-child {
+	display:none;
+}
+
+.meal-vote p {
+	display:none;
+}
+
+.meal-vote ul li {
+	float:left;
+	margin-left:22%;
+	display:block;
+	padding: 1em 0;
+}
