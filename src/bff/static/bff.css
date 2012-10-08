@@ -151,19 +151,23 @@ form input.submit {
     position: relative;
     text-indent: -99999px;
     width: 100px;
+	border:10px solid #eee;
 }
 
 .meal-vote li:nth-child(1) label {
-    height: 10px;
-    left: 0;
+    height: 64px;
+    left: 20px;
     margin: 0;
+	width:64px;
     position: absolute;
-    text-indent: 0;
-    top: 70px;
+    top: 54px;
+	background-image: url('/static/cancel-on.png');
+	border:none;
 }
 
-.meal-vote li:nth-child(1) label:after {
-	content:" HI";
+.meal-vote li:nth-child(1) label.highlight {
+	background-image: url('/static/cancel.png') !important;
+	border:none;
 }
 
 .meal-vote li:nth-child(2) label {
@@ -176,4 +180,8 @@ form input.submit {
 
 .meal-vote li:nth-child(4) label {
     background-image: url("/static/up.png");
+}
+
+.meal-vote label.highlight {
+	border: 10px solid #0e5f7e; 
 }
