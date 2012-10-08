@@ -3,15 +3,17 @@
 {% block content %}
 
 	<h1>Menu Statistics</h1>
-
+	<ul>
 	{% for menu in menus %}
-		<a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a>
+		<li><a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a></li>
 	{% endfor %}
-
+	</ul>
 	{% if menus.has_previous %}
 		<a href="{% url stats_index_page menus.previous_page_number %}">Newer</a>
 	{% endif %}
 	{% if menus.has_next %}
 		<a href="{% url stats_index_page menus.previous_page_number %}">Older</a>
 	{% endif %}
+
+	{% include 'search.block.html' %}
 {% endblock %}

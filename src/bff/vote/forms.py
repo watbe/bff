@@ -1,11 +1,11 @@
 import datetime
 from django import forms
-from django.forms.formsets import formset_factory, BaseFormSet
+from django.forms.formsets import formset_factory
 from django.forms.widgets import HiddenInput, RadioFieldRenderer, RadioInput, RadioSelect
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-from bff.vote.models import VoteEvent, Vote, VOTE_CHOICES
+from bff.vote.models import VoteEvent, Vote, VOTE_CHOICES, Category
 
 def already_voted(room_str):
 	"""
@@ -104,3 +104,9 @@ class RatingForm(forms.ModelForm):
 
 #Used to create several forms at once
 RatingFormSet = formset_factory(RatingForm, extra=0)
+
+
+class SearchForm(forms.Form):
+	query = forms.CharField(label="Meal name", required=False)
+	category = forms.ModelChoiceField(queryset=Category.objects.all(),
+		empty_label="All Categories", label="Category", required=False)

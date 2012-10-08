@@ -1,13 +1,12 @@
 # Create your views here.
 import datetime
-import json
 from django.core.paginator import Paginator, EmptyPage
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.template.context import RequestContext
-from bff.vote.forms import LoginForm, RatingFormSet, valid_room, already_voted
-from bff.vote.models import Menu, VoteEvent
+from bff.vote.forms import LoginForm, RatingFormSet, valid_room, already_voted, SearchForm
+from bff.vote.models import Menu, VoteEvent, Meal
 
 def login(request):
 	if Menu.objects.filter(date=datetime.date.today()).exists():
@@ -78,9 +77,9 @@ def stats(request, year, month, day):
 	total_neutral= 0
 	total_neg = 0
 	for meal in menu.meal_set.all():
-		positive = meal.vote_set.filter(rating=2).count()
-		neutral  = meal.vote_set.filter(rating=1).count()
-		negative = meal.vote_set.filter(rating=0).count()
+		positive = meal.ratings.filter(rating=2).count()
+		neutral  = meal.ratings.filter(rating=1).count()
+		negative = meal.ratings.filter(rating=0).count()
 
 		meal_res = {
 			'meal':meal,
@@ -127,4 +126,57 @@ def stats_index_page(request, page):
 	except EmptyPage:
 		menus = paginator.page(paginator.num_pages)
 
-	return render_to_response('stats_index.html', {'menus':menus}, context_instance = RequestContext(request))
+	search_form = SearchForm()
+
+	return render_to_response('stats_index.html', {'menus':menus, 'form':search_form}, context_instance = RequestContext(request))
+
+
+def stats_search(request):
+
+	res_dict = {}
+
+	if 'query' in request.GET and 'category' in request.GET:
+		#Do search
+		form = SearchForm(request.GET)
+		queryset = Meal.objects.select_related().order_by('-menu__date')
+		query_ = request.GET['query']
+		if query_:
+			queryset = queryset.filter(name__icontains =query_)
+		category_ = request.GET['category']
+		if category_:
+			queryset = queryset.filter(categories__id =category_)
+
+		paginator = Paginator(queryset, 100) #Change to a smaller number (3?) for testing
+		if 'page' in request.GET:
+			page_num = request.GET['page']
+		else:
+			page_num = 1
+
+		try:
+			meals = paginator.page(page_num)
+		except EmptyPage:
+			meals = paginator.page(paginator.num_pages)
+
+		#meals.
+
+		#queryset = queryset.select_related()
+		results = []
+		for meal in meals:
+			count_queryset = meal.ratings.all()
+			meal_dict = {
+				'meal':meal,
+				'date':meal.menu.date,
+				'positive':count_queryset.filter(rating = 2).count(),
+				'neutral':count_queryset.filter(rating = 1).count(),
+				'negative':count_queryset.filter(rating = 0).count(),
+			}
+			results.append(meal_dict)
+		res_dict['results'] = results
+		res_dict['paginator'] = meals
+		res_dict['query'] = query_
+		res_dict['category'] = category_
+	else:
+		form = SearchForm() #Clear the form to prevent error messages
+
+	res_dict['form'] = form
+	return render_to_response('stats_search.html', res_dict, context_instance = RequestContext(request))

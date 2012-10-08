@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	{% include 'search.block.html' %}
+
+
+	{% if results %}
+		<h2>Search results</h2>
+		<table>
+			<thead>
+			<tr><th>Meal name</th><th>Date</th><th>Satisfaction</th></tr>
+			</thead>
+			<tbody>
+			{% for meal in results %}
+				<tr><td>{{ meal.meal.name }}</td><td><a href="{% url stats meal.date.year meal.date.month meal.date.day %}">{{ meal.date }}</a></td><td>{{ meal.positive }}/{{ meal.neutral }}/{{ meal.negative }}</td></tr>
+			{% endfor %}
+			</tbody>
+
+		</table>
+
+		{% if paginator.has_previous %}
+			<a href="?query={{ query }}&category={{ category }}&page={{ paginator.previous_page_number }}">Back</a>
+		{% endif %}
+		{% if paginator.has_next %}
+			<a href="?query={{ query }}&category={{ category }}&page={{ paginator.next_page_number }}">Next</a>
+		{% endif %}
+	{% endif %}
+{% endblock %}

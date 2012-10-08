@@ -34,7 +34,7 @@ VOTE_CHOICES = (
 )
 
 class Vote(models.Model):
-	meal = models.ForeignKey(Meal)
+	meal = models.ForeignKey(Meal, related_name='ratings')
 	rating = models.SmallIntegerField(choices=VOTE_CHOICES, null=True)
 
 	def __unicode__(self):
