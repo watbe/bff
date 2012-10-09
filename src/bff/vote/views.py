@@ -176,8 +176,8 @@ def stats_search(request):
 				'total': total,
 			}
 			if total > 0:
-				meal_dict['pos_pc'] = positive * 300 / total
-				meal_dict['neu_pc'] = neutral * 300 / total
+				meal_dict['pos_pc'] = int(round(positive * float(300) / total))
+				meal_dict['neu_pc'] = int(round(neutral * float(300) / total))
 				meal_dict['neg_pc'] = 300 - meal_dict['pos_pc'] - meal_dict['neu_pc']
 
 			results.append(meal_dict)
