@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response, render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.template.context import RequestContext
 from bff.vote.forms import LoginForm, RatingFormSet, valid_room, already_voted, SearchForm
-from bff.vote.models import Menu, VoteEvent, Meal
+from bff.vote.models import Menu, VoteEvent, Meal, Vote
 
 def login(request):
 	if Menu.objects.filter(date=datetime.date.today()).exists():
@@ -162,10 +162,17 @@ def stats_search(request):
 		#queryset = queryset.select_related()
 		results = []
 		for meal in meals:
-			count_queryset = meal.ratings.all()
-			positive = count_queryset.filter(rating=2).count()
-			neutral = count_queryset.filter(rating=1).count()
-			negative = count_queryset.filter(rating=0).count()
+			count_queryset = Vote.objects.filter(meal__id = meal.id).all()
+			positive = 0
+			neutral = 0
+			negative = 0
+			for vote in count_queryset:
+				if vote.rating == 0:
+					negative += 1
+				elif vote.rating == 1:
+					neutral += 1
+				elif vote.rating == 2:
+					positive += 1
 			total = positive + neutral + negative
 			meal_dict = {
 				'meal':meal,
