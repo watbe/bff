@@ -118,7 +118,7 @@ p#finished {
     display:block;
     background-image:url('/static/thanks.png');
     text-indent:-9999px;
-    margin: 20px auto;
+    margin: 120px auto 0;
 }
 
 .clearfix {
