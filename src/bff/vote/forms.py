@@ -1,7 +1,7 @@
 import datetime
 from django import forms
 from django.forms.formsets import formset_factory
-from django.forms.widgets import HiddenInput, RadioFieldRenderer, RadioInput, RadioSelect
+from django.forms.widgets import HiddenInput, RadioFieldRenderer, RadioInput, RadioSelect, Input
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
@@ -22,8 +22,11 @@ def valid_room(room_str):
 
 	return int(room_str) in valid_rooms
 
+class NumberInput(Input):
+    input_type = 'number'
+
 class LoginForm(forms.Form):
-	room_number = forms.CharField(max_length=3)
+	room_number = forms.CharField(max_length=3, widget=NumberInput())
 
 	def clean_room_number(self):
 
@@ -35,7 +38,6 @@ class LoginForm(forms.Form):
 			raise forms.ValidationError("You have already voted today.")
 		else:
 			return room_num
-
 
 
 FULL_CHOICES = (('', 'No rating'),) + VOTE_CHOICES

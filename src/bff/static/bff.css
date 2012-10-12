@@ -202,6 +202,9 @@ h2.open {
 	background-image: url('/static/arrow-down.png');
 }
 
+#keypad {
+    display:none;
+}
 #keypad, 
 #form {
 	margin:0 auto;
@@ -217,7 +220,7 @@ h2.open {
 	float:left;
 	margin:10px;
 	text-align:center;
-    	height: 80px;
+    height: 80px;
 }
 
 #keypad div.number {

@@ -1,4 +1,5 @@
 bff_env
 migrations
+settings.py
 *.pyc
 *.swp
