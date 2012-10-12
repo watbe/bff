@@ -239,7 +239,8 @@ form#login {
 }
 
 form#login p {
-	/*display:none;*/
+    margin: 0 auto;
+    width: 289px;
 }
 
 div#room_number {
@@ -261,8 +262,38 @@ form#login input.submit-login {
 	height:70px;
 	font-size: 3em;
 	display:block;
-	margin:0 auto;
+	margin:10px auto;
 }
+
+label[for="id_room_number"] {
+    background-image: url("/static/touch-start.png");
+    display: block;
+    height: 289px;
+    width: 289px;
+    text-indent: -9999px;
+}
+label[for="id_room_number"].focused {
+    background-image: url("/static/enter-room.png");
+}
+
+input#id_room_number {
+    background-color: #efefef;
+    text-align: center;
+    border:none;
+    width:289px;
+    margin: 30px 0;
+    font-size:30px;
+}
+
+div#header {
+    text-indent:-9999px;
+    background-image: url('/static/header.png');
+    width:576px;
+    height:200px;
+    margin:0 auto;
+}
+
+
 /* Bar charts! */
 .bar-chart {
     height: 20px;

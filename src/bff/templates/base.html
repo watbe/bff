@@ -45,6 +45,16 @@
 				$("#room_number").text(newValue);
 			});
             $("#id_room_number").focus();
+
+            $('#id_room_number').focus(function(){
+                $("label[for='id_room_number']").addClass("focused");
+            });
+
+            $('#id_room_number').blur(function(){
+                $("label[for='id_room_number']").removeClass("focused");
+            });
+
+
 		}); 
 	</script>
 </head>
