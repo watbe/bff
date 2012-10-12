@@ -26,7 +26,7 @@
 
 	<div id="form"><form id="login" action="/" method="post">{% csrf_token %}
 		{{ form }}
-        <input type="text" class="invisibleSubmit" value="" />
+        <input type="text" class="invisibleSubmit" name="ignore_me" value="" />
 		<input type="submit" class="submit-login" value="login" />
 	</form></div>
 {% endblock %}
