@@ -48,10 +48,11 @@
 				$("form#login input#id_room_number").val(newValue);
 				$("#room_number").text(newValue);
 			});
-            $("#id_room_number").focus();
 
             $('#id_room_number').focus(function(){
                 $("label[for='id_room_number']").addClass("focused");
+                $("ul.errorlist").hide();
+                $("input.submit-login").css({"display":"block"});
             });
 
 //            $('#id_room_number').blur(function(){

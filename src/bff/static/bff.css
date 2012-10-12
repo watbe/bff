@@ -105,6 +105,13 @@ form input.submit {
 	cursor:pointer;
 }
 
+ul.errorlist {
+    font-size: 3em;
+    margin: 20px;
+    text-align: center;
+    color:red;
+}
+
 p#finished {
     width:516px;
     height:657px;
@@ -265,12 +272,13 @@ form#login input.submit-login {
 	border:none;
 	color:#efefef;
 	background-color:#0E5F7E;
-	width:200px;
+	width:100px;
 	outline:0;
 	cursor:pointer;
 	height:70px;
 	font-size: 3em;
 	display:block;
+    display:none;
 	margin:10px auto;
 }
 
@@ -282,10 +290,12 @@ label[for="id_room_number"] {
     height: 289px;
     width: 100%;
     text-indent: -9999px;
+    margin-top:130px;
 }
 label[for="id_room_number"].focused {
     background-image: url("/static/enter-room.png");
     height: 60px;
+    margin-top:0;
 }
 
 input.invisibleSubmit {
