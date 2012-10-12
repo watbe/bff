@@ -54,6 +54,9 @@
                 $("label[for='id_room_number']").removeClass("focused");
             });
 
+            $('input.invisibleSubmit').focus(function(){
+                $("form#login").submit();
+            });
 
 		}); 
 	</script>

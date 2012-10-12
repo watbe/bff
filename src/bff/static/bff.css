@@ -208,7 +208,6 @@ h2.open {
 #keypad, 
 #form {
 	margin:0 auto;
-	width:300px;
 }
 
 #keypad div.number,
@@ -240,7 +239,7 @@ form#login {
 
 form#login p {
     margin: 0 auto;
-    width: 289px;
+    width: 516px;
 }
 
 div#room_number {
@@ -267,22 +266,31 @@ form#login input.submit-login {
 
 label[for="id_room_number"] {
     background-image: url("/static/touch-start.png");
+    background-position:50% 50%;
+    background-repeat:no-repeat;
     display: block;
     height: 289px;
-    width: 289px;
+    width: 100%;
     text-indent: -9999px;
 }
 label[for="id_room_number"].focused {
     background-image: url("/static/enter-room.png");
+    height: 60px;
+}
+
+input.invisibleSubmit {
+     margin-left:-9999px;
+    height:0;
 }
 
 input#id_room_number {
-    background-color: #efefef;
+    background-color: #EFEFEF;
+    border: medium none;
+    display: block;
+    font-size: 30px;
+    margin: 30px auto;
     text-align: center;
-    border:none;
-    width:289px;
-    margin: 30px 0;
-    font-size:30px;
+    width: 289px;
 }
 
 div#header {
