@@ -45,7 +45,7 @@ def vote(request):
 			#Create VoteEvent to log the vote
 			VoteEvent.objects.create(room_number = room, menu=menu)
 			del request.session['room']
-			return HttpResponse("Saved your ratings")
+			return render_to_response('finished.html')
 	else:
 		initial_data = []
 
