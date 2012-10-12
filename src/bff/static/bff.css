@@ -236,7 +236,7 @@ form#login {
 }
 
 form#login p {
-	display:none;
+	/*display:none;*/
 }
 
 div#room_number {
