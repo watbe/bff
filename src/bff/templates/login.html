@@ -25,7 +25,7 @@
      <div id="room_number"></div>-->
 
 	<div id="form"><form id="login" action="/" method="post">{% csrf_token %}
-		{{ form.as_p }}
+		{{ form }}
         <input type="text" class="invisibleSubmit" value="" />
 		<input type="submit" class="submit-login" value="login" />
 	</form></div>
