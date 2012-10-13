@@ -3,6 +3,20 @@
     <link rel="stylesheet" href="{{STATIC_URL}}vote.css"/>
 {% endblock %}
 
+{% block javascript %}
+
+    jQuery(function($) {
+        $("h2.meal-heading").click(function() {
+            $(this).next().slideToggle("fast");
+            $(this).toggleClass('open');
+        });
+
+        $(".meal-vote li:nth-child(1) input + label").click(function() {
+            $(this).parent().parent().parent().slideToggle("fast");
+        });
+    });
+
+{% endblock %}
 {% block content %}
 <h1>What did you have tonight?</h1>
 <form method="post" action="">

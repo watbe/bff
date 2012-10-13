@@ -22,50 +22,15 @@
 	  })();
 
 	</script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script type="text/javascript"> 
+
+	</script>
     <script type="text/javascript">
         {% block javascript %}
         {% endblock %}
     </script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script type="text/javascript"> 
-		jQuery(function($) {
-			$("h2.meal-heading").click(function() {
-				$(this).next().slideToggle("fast");	
-				$(this).toggleClass('open');
-			});
-
-			$("form#login input#id_room_number").val('');
-
-			$("div.number").click(function() {
-				currentVal = $("form#login input#id_room_number").val();
-				newValue = currentVal + $(this).text();
-				$("form#login input#id_room_number").val(newValue);
-				$("#room_number").text(newValue);
-			});
-
-			$("div.backspace").click(function() {
-				currentVal = $("form#login input#id_room_number").val();
-				newValue = currentVal.slice(0,-1);
-				$("form#login input#id_room_number").val(newValue);
-				$("#room_number").text(newValue);
-			});
-
-            $('#id_room_number').focus(function(){
-                $("label[for='id_room_number']").addClass("focused");
-                $("ul.errorlist").hide();
-                $("input.submit-login").css({"display":"block"});
-            });
-
-//            $('#id_room_number').blur(function(){
-//                $("label[for='id_room_number']").removeClass("focused");
-//            });
-
-            $('input.invisibleSubmit').focus(function(){
-                $("form#login").submit();
-            });
-
-		}); 
-	</script>
 </head>
 <body>
 	{% block content %}

@@ -4,6 +4,36 @@
     <link rel="stylesheet" href="{{STATIC_URL}}login.css"/>
 {% endblock %}
 
+{% block javascript %}
+    jQuery(function($) {
+        $("form#login input#id_room_number").val('');
+
+        $('#id_room_number').focus(function(){
+            $("label[for='id_room_number']").addClass("focused");
+            $("ul.errorlist").hide();
+            $("input.submit-login").css({"display":"block"});
+        });
+
+        $('input.invisibleSubmit').focus(function(){
+            $("form#login").submit();
+        });
+    });
+    {#    $("div.number").click(function() {#}
+{#        currentVal = $("form#login input#id_room_number").val();#}
+{#        newValue = currentVal + $(this).text();#}
+{#        $("form#login input#id_room_number").val(newValue);#}
+{#        $("#room_number").text(newValue);#}
+{#    });#}
+
+{#    $("div.backspace").click(function() {#}
+{#        currentVal = $("form#login input#id_room_number").val();#}
+{#        newValue = currentVal.slice(0,-1);#}
+{#        $("form#login input#id_room_number").val(newValue);#}
+{#        $("#room_number").text(newValue);#}
+{#    });#}
+
+{% endblock %}
+
 {% block content %}
     <div id="header">
         Give feedback for tonight's meal!
