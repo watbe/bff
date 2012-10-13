@@ -26,18 +26,22 @@ class NumberInput(Input):
     input_type = 'number'
 
 class LoginForm(forms.Form):
-	room_number = forms.CharField(max_length=3, widget=NumberInput())
 
-	def clean_room_number(self):
+    room_number = forms.CharField(max_length=3, widget=NumberInput())
 
-		room_num = self.cleaned_data['room_number']
-
-		if not valid_room(int(room_num)):
-			raise forms.ValidationError("Invalid Room Number: %s" % room_num)
-		elif already_voted(room_num):
-			raise forms.ValidationError("You have already voted today.")
-		else:
-			return room_num
+    def clean_room_number(self):
+        room_num = self.cleaned_data['room_number']
+        try:
+            room_num_parsed = int(room_num)
+        except ValueError:
+            raise forms.ValidationError("Please enter a number. Postgraduate rooms are not supported at this time.")
+        else:
+            if not valid_room(int(room_num)):
+                raise forms.ValidationError("Invalid Room Number: %s" % room_num)
+            elif already_voted(room_num):
+                raise forms.ValidationError("You have already voted today.")
+            else:
+                return room_num
 
 
 FULL_CHOICES = (('', 'No rating'),) + VOTE_CHOICES
