@@ -1,0 +1,132 @@
+.meal-heading {
+    text-transform:lowercase;
+    font-size: 4em;
+}
+
+form h2 {
+    cursor:pointer;
+    background-position: 20px 50%;
+    background-image:  url('/static/arrow.png');
+    background-repeat: no-repeat;
+    width:100%;
+    padding:20px 20px 20px 70px;
+    height:40px;
+}
+
+form h2:nth-child(4n+4) {
+    background-color:#ee9800;
+}
+
+form h2:nth-child(4n+2) {
+    background-color:#931810;
+    color:#efefef;
+}
+
+form input.submit {
+    font-size: 3.5em;
+    left: 50%;
+    margin-left: -150px;
+    position: relative;
+    width: 300px;
+    background-color: #0e5f7e;
+    color:#efefef;
+    border:none;
+    padding:0.3em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    cursor:pointer;
+}
+
+.meal-vote {
+    background-image:none;
+    background-color:transparent;
+    background-position: 0 0;
+    height:180px;
+    background-repeat: repeat;
+    clear:both;
+    cursor:pointer;
+    display:none;
+    overflow:hidden;
+}
+
+.meal-vote:nth-child(4n+1) {
+    background-image:url("/static/yellow_bg.png");
+}
+
+.meal-vote:nth-child(4n+3) {
+    background-image:url("/static/red_bg.png");
+    color:#efefef;
+}
+
+.meal-vote ul {
+    position:relative;
+}
+
+.meal-vote ul li:first-child {
+    clear:both;
+    width:100%;
+    /*display:none;*/
+}
+
+.meal-vote p {
+    display:none;
+}
+
+.meal-vote ul li {
+    display: block;
+    float: left;
+    padding: 1em 0;
+    width: 33%;
+}
+
+.meal-vote input[type="radio"] {
+    display:none;
+}
+
+.meal-vote label {
+    cursor: pointer;
+    display: block;
+    height: 100px;
+    left: 50%;
+    margin-left: -50px;
+    position: relative;
+    text-indent: -99999px;
+    width: 100px;
+    border:10px solid #eee;
+}
+
+.meal-vote li:nth-child(1) label {
+    height: 64px;
+    left: 20px;
+    margin: 0;
+    width:64px;
+    position: absolute;
+    top: 54px;
+    background-image: url('/static/cancel-on.png');
+    border:none;
+}
+
+.meal-vote li:nth-child(1) input:checked + label {
+    background-image: url('/static/cancel.png') !important;
+    border:none;
+}
+
+.meal-vote li:nth-child(2) label {
+    background-image: url("/static/down.png");
+}
+
+.meal-vote li:nth-child(3) label {
+    background-image: url("/static/even.png");
+}
+
+.meal-vote li:nth-child(4) label {
+    background-image: url("/static/up.png");
+}
+
+.meal-vote input:checked + label {
+    border: 10px solid #0e5f7e;
+}
+
+h2.open {
+    background-image: url('/static/arrow-down.png');
+}

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{STATIC_URL}}stats.css"/>
+{% endblock %}
+
 {% block content %}
 
 	{% include 'search.block.html' %}

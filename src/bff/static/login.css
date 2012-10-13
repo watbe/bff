@@ -1,0 +1,76 @@
+#form {
+    margin:0 auto;
+}
+
+form#login {
+    clear:both;
+}
+
+form#login p {
+    margin: 0 auto;
+    width: 516px;
+}
+
+div#room_number {
+    font-size:5em;
+    font-weight:bold;
+    height:100px;
+    width:300px;
+    margin:0 auto;
+    text-align:center;
+}
+
+form#login input.submit-login {
+    border:none;
+    color:#efefef;
+    background-color:#0E5F7E;
+    width:100px;
+    outline:0;
+    cursor:pointer;
+    height:70px;
+    font-size: 3em;
+    display:block;
+    display:none;
+    margin:10px auto;
+}
+
+label[for="id_room_number"] {
+    background-image: url("/static/touch-start.png");
+    background-position:50% 50%;
+    background-repeat:no-repeat;
+    display: block;
+    height: 289px;
+    width: 100%;
+    text-indent: -9999px;
+    margin-top:130px;
+}
+
+label[for="id_room_number"].focused {
+    background-image: url("/static/enter-room.png");
+    height: 60px;
+    margin-top:0;
+}
+
+input.invisibleSubmit {
+    margin-left:-9999px;
+    height:0;
+}
+
+input#id_room_number {
+    background-color: #EFEFEF;
+    border: medium none;
+    display: block;
+    font-size: 30px;
+    margin: 30px auto;
+    text-align: center;
+    width: 289px;
+}
+
+div#header {
+    text-indent:-9999px;
+    background-image: url('/static/header.png');
+    width:576px;
+    height:200px;
+    margin:0 auto;
+    margin-top:20px;
+}

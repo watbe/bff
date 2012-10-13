@@ -1,29 +1,13 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{STATIC_URL}}login.css"/>
+{% endblock %}
+
 {% block content %}
     <div id="header">
         Give feedback for tonight's meal!
     </div>
-    <!--<div id="keypad">
-         <div class="number">1</div>
-         <div class="number">2</div>
-         <div class="number">3</div>
-         <div class="clearfix"></div>
-         <div class="number">4</div>
-         <div class="number">5</div>
-         <div class="number">6</div>
-         <div class="clearfix"></div>
-         <div class="number">7</div>
-         <div class="number">8</div>
-         <div class="number">9</div>
-         <div class="clearfix"></div>
-         <div class="number">0</div>
-         <div class="backspace">backspace</div>
-         <div class="clearfix"></div>
-     </div>
-
-     <div id="room_number"></div>-->
-
 	<div id="form"><form id="login" action="/" method="post" autocomplete="off">{% csrf_token %}
 		{{ form }}
         <input type="text" class="invisibleSubmit" name="ignore_me" value="" />
