@@ -39,6 +39,7 @@
         {% block branding %}{% endblock %}
         </div>
         {% if user.is_active and user.is_staff %}
+        <span class="stats"><a href="/stats">&raquo; View Statistics &laquo;</a></span>
         <div id="user-tools">
             {% trans 'Welcome,' %}
             <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
