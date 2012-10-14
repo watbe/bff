@@ -42,5 +42,7 @@
 		{% if paginator.has_next %}
 			<a href="?query={{ query }}&category={{ category }}&page={{ paginator.next_page_number }}">Next</a>
 		{% endif %}
-	{% endif %}
+	{% else %}
+        No results for your query: &quot;{{ query }}&quot;
+    {% endif %}
 {% endblock %}
