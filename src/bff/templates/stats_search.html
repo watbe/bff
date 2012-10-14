@@ -1,7 +1,8 @@
 {% extends 'stats_index.html' %}
 
-{% block main %}
+{% block title %}Search Results for &quot;{{ query }}&quot;{% endblock %}
 
+{% block main %}
 
 	{% if results %}
 		<h1>Search Results for &quot;{{ query }}&quot;</h1>
