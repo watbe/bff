@@ -20,6 +20,11 @@
 {% block content %}
 
     <div id="stats-wrapper">
+        <div id="main">
+            {% block main %}
+                Browse the statistics using the left sidebar.
+            {% endblock %}
+        </div>
         <div id="left-sidebar">
             <h1>Food Statistics</h1>
             <div id="search">
@@ -27,9 +32,9 @@
             </div>
             <h2>Recent Reports:</h2>
             <ul class="date-list">
-            {% for menu in menus %}
-                <li><a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a></li>
-            {% endfor %}
+                {% for menu in menus %}
+                    <li><a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a></li>
+                {% endfor %}
             </ul>
             {% if menus.has_previous %}
                 <a href="{% url stats_index_page menus.previous_page_number %}">Newer</a>
@@ -38,15 +43,6 @@
                 <a href="{% url stats_index_page menus.previous_page_number %}">Older</a>
             {% endif %}
         </div>
-
-        <div id="main">
-            {% block main %}
-                Browse the statistics using the left sidebar.
-            {% endblock %}
-        </div>
     </div>
-
-
-
 
 {% endblock %}

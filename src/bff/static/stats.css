@@ -77,7 +77,10 @@ table a:hover {
     line-height: 30px;
     padding: 30px 10px 30px 40px;
     width: 290px;
-    float:left;
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #left-sidebar h1 {
@@ -89,6 +92,7 @@ table a:hover {
 
 #stats-wrapper {
     font-family:Lato, sans-serif;
+    position:relative;
 }
 
 #stats-wrapper h2 {
@@ -152,6 +156,7 @@ ul.date-list a:hover {
     clear: none;
     float: left;
     font-size: 24px;
+    margin-left: 350px;
     padding: 30px;
 }
 
