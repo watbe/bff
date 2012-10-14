@@ -13,6 +13,7 @@
 
         $(".meal-vote li:nth-child(1) input + label").click(function() {
             $(this).parent().parent().parent().slideToggle("fast");
+            $(this).parent().parent().parent().prev().toggleClass('open');
         });
     });
 

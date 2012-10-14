@@ -8,8 +8,8 @@ form h2 {
     background-position: 20px 50%;
     background-image:  url('/static/arrow.png');
     background-repeat: no-repeat;
-    width:100%;
     padding:20px 20px 20px 70px;
+    width:auto;
     height:40px;
 }
 
