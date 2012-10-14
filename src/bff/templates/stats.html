@@ -40,8 +40,6 @@
 			var chart_2 = new google.visualization.ColumnChart(document.getElementById('meals-column-chart'));
 			chart_2.draw(data_2, options_2);
 		}
-
-
 	</script>
     <h1>Report for {{ date }}</h1>
     <div class="quicklinks">Jump to: <a href="#overall">Overall Satisfaction</a><a href="#per-meal">Satisfaction per Meal</a></div>
@@ -63,14 +61,5 @@
 
     <h2 id="per-meal">Breakdown per Meal:</h2>
 	<div id="meals-column-chart" class="graph" style="min-height: 400px"></div>
-
-{#	{% for meal in meals %}#}
-{#		<h2>{{ meal.meal.name }}</h2>#}
-{#		<ul>#}
-{#			<li>Positive: {{ meal.positive }}</li>#}
-{#			<li>Neutral: {{ meal.neutral }}</li>#}
-{#			<li>Negative: {{ meal.negative }}</li>#}
-{#		</ul>#}
-{#	{% endfor %}#}
 
 {% endblock %}

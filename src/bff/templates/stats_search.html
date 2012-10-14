@@ -6,6 +6,7 @@
 
 	{% if results %}
 		<h1>Search Results for &quot;{{ query }}&quot;</h1>
+
 		<table class="stats-table">
 			<thead>
 			<tr><th>Meal</th><th>Serve Date</th><th>Overview</th></tr>
@@ -33,7 +34,6 @@
 				</tr>
 			{% endfor %}
 			</tbody>
-
 		</table>
 
 		{% if paginator.has_previous %}
