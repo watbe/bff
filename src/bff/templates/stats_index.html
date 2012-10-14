@@ -2,22 +2,39 @@
 
 {% block css %}
     <link rel="stylesheet" href="{{STATIC_URL}}stats.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block content %}
 
-	<h1>Menu Statistics</h1>
-	<ul>
-	{% for menu in menus %}
-		<li><a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a></li>
-	{% endfor %}
-	</ul>
-	{% if menus.has_previous %}
-		<a href="{% url stats_index_page menus.previous_page_number %}">Newer</a>
-	{% endif %}
-	{% if menus.has_next %}
-		<a href="{% url stats_index_page menus.previous_page_number %}">Older</a>
-	{% endif %}
+    <div id="stats-wrapper">
+        <div id="left-sidebar">
+            <h1>Food Statistics</h1>
+            <div id="search">
+                {% include 'search.block.html' %}
+            </div>
+            <h2>Recent Reports:</h2>
+            <ul class="date-list">
+            {% for menu in menus %}
+                <li><a href="{% url stats menu.date.year menu.date.month menu.date.day %}">{{ menu.date }}</a></li>
+            {% endfor %}
+            </ul>
+            {% if menus.has_previous %}
+                <a href="{% url stats_index_page menus.previous_page_number %}">Newer</a>
+            {% endif %}
+            {% if menus.has_next %}
+                <a href="{% url stats_index_page menus.previous_page_number %}">Older</a>
+            {% endif %}
+        </div>
 
-	{% include 'search.block.html' %}
+        <div id="main">
+            {% block main %}
+                Browse the statistics using the left sidebar.
+            {% endblock %}
+        </div>
+    </div>
+
+
+
+
 {% endblock %}

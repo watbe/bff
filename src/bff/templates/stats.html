@@ -1,11 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'stats_index.html' %}
 
-{% block css %}
-    <link rel="stylesheet" href="{{STATIC_URL}}stats.css"/>
-{% endblock %}
-
-{% block content %}
-
+{% block main %}
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 		google.load("visualization", "1", {packages:["corechart", 'columnchart']});
@@ -13,30 +8,31 @@
 		function drawCharts() {
 			var data = google.visualization.arrayToDataTable([
 				['Rating', 'Votes'],
-				['Great',    		{{ totals.positive }}],
-				['Satisfactory',	{{ totals.neutral }}],
-				['Unsatisfactory',	{{ totals.negative }}]
+				['Positive',    		{{ totals.positive }}],
+				['Neutral',	{{ totals.neutral }}],
+				['Negative',	{{ totals.negative }}]
 			]);
 
 			var options = {
-				title: 'Overall satisfaction'
-
-			};
+                backgroundColor: { fill:'transparent' },
+                colors: ['green', 'orange', 'red']
+            };
 
 			var chart = new google.visualization.PieChart(document.getElementById('overall-pie-chart'));
 			chart.draw(data, options);
 
 
 			var data_2 = google.visualization.arrayToDataTable([
-				['Year', 'Great', 'Satisfactory', 'Unsatisfactory'],
+				['Year', 'Positive', 'Neutral', 'Negative'],
 				{% for meal in meals %}
 				['{{ meal.meal.name }}',  {{ meal.positive }}, {{ meal.neutral }}, {{ meal.negative }}],
 				{% endfor %}
 			]);
 
 			var options_2 = {
-				title: 'Satisfaction by meal',
-				hAxis: {title: 'Meal'}
+				hAxis: {title: 'Meal'},
+                backgroundColor: { fill:'transparent' },
+                colors: ['green', 'orange', 'red']
 			};
 
 			var chart_2 = new google.visualization.ColumnChart(document.getElementById('meals-column-chart'));
@@ -45,17 +41,26 @@
 
 
 	</script>
-	<header style="border-bottom: 1px solid; padding-bottom: 25px;">
-	<h1>Results for {{ date }}</h1>
-	{% if prev %}
-	<a href="{% url stats prev.year prev.month prev.day %}" style="float:left; font-size: 16px; margin-left: 10px;">« {{ prev }}</a>
-	{% endif %}
-	{% if next %}
-		<a href="{% url stats next.year next.month next.day %}" style="font-size: 16px; float: right; margin-right: 10px;">{{ next }} »</a>
-	{% endif %}
-	</header>
-	<div id="overall-pie-chart" style="width: 900px; height: 500px;"></div>
-	<div id="meals-column-chart" style="width: 900px; height: 500px;"></div>
+    <h1>Report for {{ date }}</h1>
+    <div class="quicklinks">Jump to: <a href="#overall">Overall Satisfaction</a><a href="#per-meal">Per Meal</a></div>
+    <div class="navigation">
+        {% if prev %}
+            <a href="{% url stats prev.year prev.month prev.day %}">&laquo; {{ prev }}</a>
+        {% endif %}
+        {% if next %}
+            <a href="{% url stats next.year next.month next.day %}">{{ next }} &raquo; </a>
+        {% endif %}
+    </div>
+    <h2>Overview:</h2>
+    <div id="average" class="{{ color }}">{{ average }}%</div>
+    <div class="subtext">This is the percentage of votes that rated a meal positively</div>
+    <div id="total">{{ totals.total }} votes were collected</div>
+
+    <h2 id="overall">Overall Satisfaction:</h2>
+	<div id="overall-pie-chart" class="graph" style="min-height: 400px"></div>
+
+    <h2 id="per-meal">Breakdown per Meal:</h2>
+	<div id="meals-column-chart" class="graph" style="min-height: 400px"></div>
 
 {#	{% for meal in meals %}#}
 {#		<h2>{{ meal.meal.name }}</h2>#}

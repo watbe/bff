@@ -1,24 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'stats_index.html' %}
 
-{% block css %}
-    <link rel="stylesheet" href="{{STATIC_URL}}stats.css"/>
-{% endblock %}
-
-{% block content %}
-
-	{% include 'search.block.html' %}
+{% block main %}
 
 
 	{% if results %}
-		<h2>Search results</h2>
+		<h1>Search Results for &quot;{{ query }}&quot;</h1>
 		<table class="stats-table">
 			<thead>
-			<tr><th>Meal name</th><th>Date</th><th>Satisfaction</th></tr>
+			<tr><th>Meal</th><th>Serve Date</th><th>Overview</th></tr>
 			</thead>
 			<tbody>
 			{% for meal in results %}
 				<tr class="stats-meal-row">
-					<td>{{ meal.meal.name }}</td>
+					<td><a href="{% url stats meal.date.year meal.date.month meal.date.day %}">{{ meal.meal.name }}</a></td>
 					<td><a href="{% url stats meal.date.year meal.date.month meal.date.day %}">{{ meal.date }}</a></td>
 					<td><div class="bar-chart">
 						{% if meal.total > 0 %}

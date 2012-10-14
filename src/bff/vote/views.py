@@ -94,6 +94,18 @@ def stats(request, year, month, day):
 
 		results.append(meal_res)
 
+	total_votes = total_neutral + total_pos + total_neg
+
+	average = 0.0
+
+	if total_votes:
+		average = float(float(total_pos) / float(total_votes)) * 100
+
+	if average > 49:
+		color = "positive"
+	else:
+		color = "negative"
+
 	res_dict = {
 		'meals':results,
 		'totals': {
@@ -103,11 +115,17 @@ def stats(request, year, month, day):
 			'total':total_pos + total_neutral + total_neg,
 		},
 		'date':date,
+		'average':int(average),
+		'color':color,
+
 	}
 	if(menu_exists(date, -1)):
 		res_dict['prev'] = date - datetime.timedelta(1)
 	if(menu_exists(date, 1)):
 		res_dict['next'] = date + datetime.timedelta(1)
+
+	res_dict['menus'] = get_menus()
+	res_dict['form'] = SearchForm()
 
 	return render_to_response('stats.html', res_dict, context_instance = RequestContext(request))
 
@@ -130,6 +148,18 @@ def stats_index_page(request, page):
 
 	return render_to_response('stats_index.html', {'menus':menus, 'form':search_form}, context_instance = RequestContext(request))
 
+def get_menus():
+
+	all_menus = Menu.objects.order_by('-date')
+	paginator = Paginator(all_menus, 30)
+	page_num = int(0)
+
+	try:
+		menus = paginator.page(page_num)
+	except EmptyPage:
+		menus = paginator.page(paginator.num_pages)
+
+	return menus
 
 def stats_search(request):
 
@@ -188,5 +218,7 @@ def stats_search(request):
 	else:
 		form = SearchForm() #Clear the form to prevent error messages
 
-	res_dict['form'] = form
+	res_dict['menus'] = get_menus()
+	res_dict['form'] = SearchForm()
+
 	return render_to_response('stats_search.html', res_dict, context_instance = RequestContext(request))
