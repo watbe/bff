@@ -2,6 +2,16 @@
 
 {% block title %}Food Statistics{% endblock %}
 
+{% block javascript %}
+    jQuery(function($) {
+        if($("#main").height() >= $("#left-sidebar").height()) {
+            $("#left-sidebar").height($("#main").height())
+        } else {
+            $("#left-sidebar").height($(document).height() - 60)
+        }
+    });
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{{STATIC_URL}}stats.css"/>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
