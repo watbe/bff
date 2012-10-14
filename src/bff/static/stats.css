@@ -151,6 +151,7 @@ ul.date-list a:hover {
 #main {
     clear: none;
     float: left;
+    font-size: 24px;
     padding: 30px;
 }
 
