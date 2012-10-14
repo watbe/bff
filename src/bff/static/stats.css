@@ -218,6 +218,7 @@ ul.date-list a:hover {
 #total {
     font-size: 30px;
     width:100%;
+    clear:left;
 }
 
 .quicklinks {
