@@ -219,6 +219,6 @@ def stats_search(request):
 		form = SearchForm() #Clear the form to prevent error messages
 
 	res_dict['menus'] = get_menus()
-	res_dict['form'] = SearchForm()
+	res_dict['form'] = form
 
 	return render_to_response('stats_search.html', res_dict, context_instance = RequestContext(request))

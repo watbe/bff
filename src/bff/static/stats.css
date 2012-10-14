@@ -234,3 +234,6 @@ ul.date-list a:hover {
 .quicklinks a:hover {
     color: #999;
 }
+html, body {height: 100%;}
+
+#left-sidebar {min-height: 100%;}
