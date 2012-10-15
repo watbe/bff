@@ -10,7 +10,7 @@ form h2 {
     background-repeat: no-repeat;
     padding:20px 20px 20px 70px;
     width:auto;
-    height:40px;
+    min-height:40px;
 }
 
 form h2:nth-child(4n+4) {
