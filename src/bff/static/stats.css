@@ -241,3 +241,9 @@ ul.date-list a:hover {
 .quicklinks a:hover {
     color: #999;
 }
+
+.quicklinks.back {
+    font-size: 10px;
+    position: absolute;
+    top: -3px;
+}
