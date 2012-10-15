@@ -135,7 +135,7 @@ def stats_index(request):
 
 
 def stats_index_page(request, page):
-	all_menus = Menu.objects.order_by('-date')
+	all_menus = Menu.objects.filter(date__lte=datetime.date.today()).order_by('-date')
 	paginator = Paginator(all_menus, 30)
 	page_num = int(page)
 
@@ -150,7 +150,7 @@ def stats_index_page(request, page):
 
 def get_menus():
 
-	all_menus = Menu.objects.order_by('-date')
+	all_menus = Menu.objects.filter(date__lte=datetime.date.today()).order_by('-date')
 	paginator = Paginator(all_menus, 30)
 	page_num = int(0)
 
